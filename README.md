@@ -17,9 +17,7 @@ Service is "running" when a component of the application launches its challenge 
 
 Service is "bound" when an application component attached to her calling bindService().Tied service offers client-server interface that allows components to communicate with the service, send, receive results and even do it between different processes through inter-process communication (IPC). Tied service works only as long as it is tied to the other components of the application. Several components can be linked to the service at the same time, but when they all cancel the binding, the service is deleted.
 
-### Conclusion ###
-
-* Although this documentation, these two types of services are discussed separately, the service can work both ways - it can be launched (and work indefinitely) and to allow binding. It depends on the implementation of couples callback methods: onStartCommand () allows components to run the service, and onBind () allows you to snap.
+* These two types of services are discussed separately, the service can work both ways - it can be launched (and work indefinitely) and to allow binding. It depends on the implementation of couples callback methods: onStartCommand () allows components to run the service, and onBind () allows you to snap.
 
 ### Service Lifecycle Methods ###
 
