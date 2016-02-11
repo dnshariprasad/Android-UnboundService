@@ -6,23 +6,16 @@ In addition, the component can be attached to the service to interact with her â
 
 ### In fact, the service can take two forms: ###
 
-* launched / Started / unbound
-* tied / bound
+* Launched / Started / Unbound
+* Tied / Bound
 
-### How do I get set up? ###
+### Started Service ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+Service is "running" when a component of the application launches its challenge startService(). It runs in the background indefinitely. It is stopped by stopService() method. The service can stop itself by calling the stopSelf() method.
 
-### Contribution guidelines ###
+### Bound Service ###
 
-* Writing tests
-* Code review
-* Other guidelines
+Service is "bound" when an application component attached to her calling bindService().Tied service offers client-server interface that allows components to communicate with the service, send, receive results and even do it between different processes through inter-process communication (IPC). Tied service works only as long as it is tied to the other components of the application. Several components can be linked to the service at the same time, but when they all cancel the binding, the service is deleted.
 
 ### Who do I talk to? ###
 
