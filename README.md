@@ -22,6 +22,7 @@ Service is "bound" when an application component attached to her calling bindSer
 * Although this documentation, these two types of services are discussed separately, the service can work both ways - it can be launched (and work indefinitely) and to allow binding. It depends on the implementation of couples callback methods: onStartCommand () allows components to run the service, and onBind () allows you to snap.
 
 ### Service Lifecycle Methods ###
+
 *** onStartCommand ()**
 The system calls this method when another component, such as the operation requesting the launch of the service, causing **startService ()** . After executing this method, the service is started and can run in the background indefinitely. If you implement this method, you have to stop the service by calling **stopSelf ()** or** stopservice ()** . (If you only want to provide binding, to implement this method is not required).
 
