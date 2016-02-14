@@ -19,6 +19,16 @@ Service is "bound" when an application component attached to her calling bindSer
 
 * These two types of services are discussed separately, the service can work both ways - it can be launched (and work indefinitely) and to allow binding. It depends on the implementation of couples callback methods: onStartCommand () allows components to run the service, and onBind () allows you to snap.
 
+---
+
+The key part here is a new result code returned by the function, telling the system what it should do with the service if its process is killed while it is running:
+
+START_STICKY is basically the same as the previous behavior, where the service is left "started" and will later be restarted by the system. The only difference from previous versions of the platform is that it if it gets restarted because its process is killed, onStartCommand() will be called on the next instance of the service with a null Intent instead of not being called at all. Services that use this mode should always check for this case and deal with it appropriately.
+
+START_NOT_STICKY says that, after returning from onStartCreated(), if the process is killed with no remaining start commands to deliver, then the service will be stopped instead of restarted. This makes a lot more sense for services that are intended to only run while executing commands sent to them. For example, a service may be started every 15 minutes from an alarm to poll some network state. If it gets killed while doing that work, it would be best to just let it be stopped and get started the next time the alarm fires.
+
+START_REDELIVER_INTENT is like START_NOT_STICKY, except if the service's process is killed before it calls stopSelf() for a given intent, that intent will be re-delivered to it until it completes (unless after some number of more tries it still can't complete, at which point the system gives up). This is useful for services that are receiving commands of work to do, and want to make sure they do eventually complete the work for each command sent.
+
 ### Service Lifecycle Methods ###
 
 * ** onStartCommand ()**
